@@ -1,34 +1,35 @@
 package br.com.alura.forum.service
 
-import br.com.alura.forum.dto.NovoTopicoDto
-import br.com.alura.forum.model.Curso
+import br.com.alura.forum.dto.NovoTopicoForm
+import br.com.alura.forum.dto.TopicoView
+import br.com.alura.forum.mapper.TopicoFormMapper
+import br.com.alura.forum.mapper.TopicoViewMapper
 import br.com.alura.forum.model.Topico
-import br.com.alura.forum.model.Usuario
 import org.springframework.stereotype.Service
+import java.util.stream.Collectors
 
 @Service
 class TopicoService (
     private var topicos: List<Topico> = ArrayList(),
-    private var cursoService: CursoService,
-    private var usuarioService: UsuarioService){
-    fun listar(): List<Topico>{
-        return topicos
+    private val topicoViewMapper: TopicoViewMapper,
+    private val topicoFormMapper: TopicoFormMapper){
+    fun listar(): List<TopicoView>{
+        return topicos.stream().map{
+            t -> topicoViewMapper.map(t)
+        }.collect(Collectors.toList())
     }
 
-    fun buscarPorId(id: Long): Topico{
-        return topicos.stream().filter({
+    fun buscarPorId(id: Long): TopicoView{
+        val topico =  topicos.stream().filter({
                 t -> t.id == id
         }).findFirst().get()
+
+        return topicoViewMapper.map(topico)
     }
 
-    fun cadastrar(dto: NovoTopicoDto) {
-
-        topicos = topicos.plus(Topico(
-            id = topicos.size.toLong() + 1,
-            titulo = dto.titulo,
-            mensagem = dto.mensagem,
-            curso = cursoService.buscarPorId(dto.idCurso),
-            autor = usuarioService.buscarPorId(dto.idUsuario)
-        ))
+    fun cadastrar(form: NovoTopicoForm) {
+        var topico = topicoFormMapper.map(form)
+        topico.id = topicos.size.toLong() + 1
+        topicos = topicos.plus(topico)
     }
 }
