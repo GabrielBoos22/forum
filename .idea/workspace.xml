@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="988a9819-58d8-4741-8b85-564d0ca499ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/projeto/src/main/kotlin/br/com/alura/forum/dto/AtualizacaoTopicoForm.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projeto/src/main/kotlin/br/com/alura/forum/dto/ErrorView.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projeto/src/main/kotlin/br/com/alura/forum/exception/ExceptionHandler.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projeto/src/main/kotlin/br/com/alura/forum/exception/NotFoundException.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projeto/src/main/kotlin/br/com/alura/forum/controller/TopicoController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/projeto/src/main/kotlin/br/com/alura/forum/controller/TopicoController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projeto/src/main/kotlin/br/com/alura/forum/service/TopicoService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/projeto/src/main/kotlin/br/com/alura/forum/service/TopicoService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projeto/src/main/kotlin/br/com/alura/forum/exception/ExceptionHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/projeto/src/main/kotlin/br/com/alura/forum/exception/ExceptionHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projeto/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/projeto/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
