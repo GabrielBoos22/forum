@@ -2,11 +2,16 @@ package br.com.alura.forum.controller
 
 
 
+import br.com.alura.forum.dto.AtualizacaoTopicoForm
 import br.com.alura.forum.dto.NovoTopicoForm
 import br.com.alura.forum.dto.TopicoView
+import br.com.alura.forum.model.Topico
 import br.com.alura.forum.service.TopicoService
 import jakarta.validation.Valid
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.util.UriComponentsBuilder
 import java.util.*
 
 @RestController
@@ -24,7 +29,22 @@ class TopicoController(private val service: TopicoService) {
     }
 
     @PostMapping
-    fun cadastrar(@RequestBody @Valid topico: NovoTopicoForm) {
-        service.cadastrar(topico)
+    fun cadastrar(@RequestBody @Valid topico: NovoTopicoForm, uriBuilder: UriComponentsBuilder): ResponseEntity<TopicoView> {
+        val topicoView = service.cadastrar(topico)
+        val uri = uriBuilder.path("/topicos/${topicoView.id}").build().toUri()
+        return ResponseEntity.created(uri).body(topicoView)
     }
+
+    @PutMapping("/{id}")
+    fun atualizar(@PathVariable id: Long, @RequestBody @Valid form: AtualizacaoTopicoForm): ResponseEntity<TopicoView> {
+            val topicoView = service.atualizar(form, id)
+            return ResponseEntity.ok(topicoView)
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun deletar(@PathVariable id: Long) {
+        service.deletar(id)
+    }
+
 }
